@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPMB 2026/2027 – SMAN 1 Lubai Ulu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1a56db;
+    --blue-dark: #1040b0;
+    --blue-light: #dbeafe;
+    --blue-mid: #3b82f6;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-400: #94a3b8;
+    --gray-600: #475569;
+    --gray-800: #1e293b;
+    --red: #dc2626;
+    --red-dark: #991b1b;
+    --gold: #f59e0b;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,.13);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--white);
+    color: var(--gray-800);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .3s;
+  }
+  header.scrolled { box-shadow: var(--shadow-md); }
+
+  .header-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 64px;
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--blue-dark);
+  }
+
+  .logo img {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .kaki img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .logo-text { font-size: .82rem; font-weight: 700; line-height: 1.25; }
+  .logo-sub { font-size: .68rem; font-weight: 400; color: var(--gray-600); }
+
+  nav { display: flex; align-items: center; gap: 4px; }
+  nav a {
+    padding: 6px 12px; border-radius: 8px;
+    font-size: .78rem; font-weight: 600; color: var(--gray-600);
+    text-decoration: none; transition: background .2s, color .2s;
+    white-space: nowrap;
+  }
+  nav a:hover { background: var(--blue-light); color: var(--blue); }
+
+  .nav-cta {
+    background: var(--blue) !important; color: #fff !important;
+    padding: 8px 16px !important; margin-left: 8px;
+  }
+  .nav-cta:hover { background: var(--blue-dark) !important; }
+
+  .burger {
+    display: none; background: none; border: none; cursor: pointer;
+    flex-direction: column; gap: 5px; padding: 6px;
+  }
+  .burger span {
+    display: block; width: 22px; height: 2px; background: var(--gray-800);
+    border-radius: 2px; transition: .3s;
+  }
+
+  .mobile-nav {
+    display: none; position: fixed; top: 64px; left: 0; right: 0;
+    background: #fff; border-bottom: 1px solid var(--gray-200);
+    padding: 12px 24px; z-index: 999; flex-direction: column; gap: 4px;
+    box-shadow: var(--shadow-md);
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    padding: 10px 12px; border-radius: 8px;
+    font-size: .85rem; font-weight: 600; color: var(--gray-700);
+    text-decoration: none; transition: background .2s;
+  }
+  .mobile-nav a:hover { background: var(--blue-light); color: var(--blue); }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 24px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--blue);
+    background: var(--blue-light); border-radius: 999px;
+    padding: 5px 14px; margin-bottom: 14px;
+  }
+  .section-label::before {
+    content: ''; display: block; width: 6px; height: 6px;
+    background: var(--blue); border-radius: 50%;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.2; color: var(--gray-800);
+    margin-bottom: 12px;
+  }
+  .lead { font-size: 1.05rem; color: var(--gray-600); max-width: 620px; }
+
+  /* ── 1. BANNER ── */
+  #beranda {
+    padding: 0; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; background: var(--gray-800);
+  }
+  .banner-bg {
+    position: absolute; inset: 0;
+    background: url('banner2.jpeg') center/cover no-repeat;
+    filter: brightness(.45);
+    transition: transform 8s ease;
+  }
+  #beranda:hover .banner-bg { transform: scale(1.03); }
+
+  .banner-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(26,86,219,.7) 0%, rgba(10,20,60,.55) 100%);
+  }
+
+  .banner-content {
+    position: relative; z-index: 2;
+    text-align: center; color: #fff; padding: 24px;
+    max-width: 780px; margin: 0 auto; padding-top: 120px;
+    animation: fadeUp .9s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(30px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  .banner-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.18); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.3); border-radius: 999px;
+    padding: 6px 18px; font-size: .78rem; font-weight: 600;
+    margin-bottom: 20px; letter-spacing: .06em;
+  }
+  .badge-star { color: var(--gold); font-size: 1rem; }
+
+  .banner-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    line-height: 1.15; margin-bottom: 10px;
+    text-shadow: 0 2px 12px rgba(0,0,0,.3);
+  }
+  .banner-content .sub {
+    font-size: clamp(.95rem, 2.5vw, 1.15rem);
+    opacity: .88; margin-bottom: 8px;
+  }
+  .banner-content .year {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 700; color: #93c5fd; margin-bottom: 28px;
+  }
+  .banner-desc {
+    font-size: .95rem; opacity: .82; max-width: 560px;
+    margin: 0 auto 36px;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--blue); color: #fff;
+    padding: 14px 32px; border-radius: 999px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(26,86,219,.5);
+    transition: background .2s, transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover {
+    background: #fff; color: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(26,86,219,.4);
+  }
+  .btn-primary svg { transition: transform .2s; }
+  .btn-primary:hover svg { transform: translateX(4px); }
+
+  .banner-stats {
+    display: flex; justify-content: center; gap: 32px;
+    margin-top: 52px; flex-wrap: wrap;
+  }
+  .banner-stat {
+    text-align: center; animation: fadeUp .9s ease both;
+  }
+  .banner-stat:nth-child(2) { animation-delay: .1s; }
+  .banner-stat:nth-child(3) { animation-delay: .2s; }
+  .banner-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900; color: #fff;
+    line-height: 1;
+  }
+  .banner-stat .lbl { font-size: .78rem; opacity: .75; margin-top: 4px; }
+
+  .scroll-hint {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: rgba(255,255,255,.6); font-size: .72rem; letter-spacing: .08em;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(8px); }
+  }
+  .scroll-hint svg { opacity: .7; }
+
+  /* ── 2. SAMBUTAN ── */
+  #sambutan { background: var(--gray-50); }
+  .sambutan-grid {
+    display: grid; grid-template-columns: 1fr 2fr; gap: 48px;
+    align-items: center;
+  }
+  .kepsek-photo {
+    position: relative;
+  }
+  .kepsek-photo img, .kepsek-photo .photo-placeholder {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    border-radius: var(--radius); box-shadow: var(--shadow-lg);
+    display: block;
+  }
+  .photo-placeholder {
+    background: linear-gradient(135deg, var(--blue-light), var(--blue));
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; color: rgba(255,255,255,.8);
+    font-size: .85rem; gap: 12px;
+  }
+  .photo-placeholder svg { opacity: .6; }
+  .kepsek-badge {
+    position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--blue); color: #fff;
+    padding: 8px 20px; border-radius: 999px;
+    font-size: .75rem; font-weight: 700; white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(26,86,219,.3);
+  }
+  .sambutan-text blockquote {
+    font-size: 1.1rem; font-style: italic; color: var(--gray-600);
+    border-left: 4px solid var(--blue); padding-left: 20px;
+    margin: 20px 0; line-height: 1.8;
+  }
+  .sambutan-text p { color: var(--gray-600); margin-bottom: 12px; }
+  .kepsek-name {
+    font-weight: 700; font-size: 1.1rem; color: var(--gray-800);
+    margin-top: 20px;
+  }
+  .kepsek-nip { font-size: .82rem; color: var(--gray-400); }
+
+  /* ── 3. FASILITAS ── */
+  #fasilitas { background: var(--white); }
+  .fasilitas-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px; margin-top: 40px;
+  }
+  .fasilitas-card {
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200);
+    transition: transform .25s, box-shadow .25s;
+    background: var(--white);
+  }
+  .fasilitas-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .fasilitas-img {
+    height: 180px; background: linear-gradient(135deg, var(--blue-light), var(--blue-mid));
+    background-size: cover; background-position: center;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .fasilitas-img .fas-icon { font-size: 3rem; opacity: .35; color: #fff; }
+  .fasilitas-img-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.6), transparent);
+    padding: 28px 16px 12px;
+    color: #fff; font-weight: 700; font-size: .9rem;
+  }
+  .fasilitas-body { padding: 14px 16px; }
+  .fasilitas-body p { font-size: .82rem; color: var(--gray-600); }
+
+  /* ── 4. DAYA TAMPUNG ── */
+  #daya-tampung {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+    color: #fff;
+  }
+  #daya-tampung h2 { color: #fff; }
+  #daya-tampung .lead { color: rgba(255,255,255,.8); }
+  .dt-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px; margin-top: 40px;
+  }
+  .dt-card {
+    background: rgba(255,255,255,.12); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: var(--radius); padding: 32px 24px; text-align: center;
+    transition: background .2s;
+  }
+  .dt-card:hover { background: rgba(255,255,255,.2); }
+  .dt-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 900; color: #fff; line-height: 1;
+  }
+  .dt-lbl { font-size: .88rem; color: rgba(255,255,255,.75); margin-top: 8px; }
+  .dt-icon { font-size: 2rem; margin-bottom: 12px; opacity: .8; }
+
+  /* ── 5. JALUR ── */
+  #jalur { background: var(--gray-50); }
+  .jalur-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px; margin-top: 40px;
+  }
+  .jalur-card {
+    background: var(--white); border-radius: var(--radius);
+    border: 1px solid var(--gray-200); padding: 24px;
+    box-shadow: var(--shadow-sm); transition: transform .2s, box-shadow .2s;
+    position: relative; overflow: hidden;
+  }
+  .jalur-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: var(--blue);
+  }
+  .jalur-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .jalur-percent {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem; font-weight: 900; color: var(--blue); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .jalur-name { font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+  .jalur-desc { font-size: .82rem; color: var(--gray-600); }
+  .jalur-quota { font-size: .78rem; color: var(--blue); font-weight: 600; margin-top: 10px; }
+
+  /* ── 6. SYARAT ── */
+  #syarat { background: var(--white); }
+  .syarat-tabs { display: flex; gap: 8px; margin: 28px 0; flex-wrap: wrap; }
+  .tab-btn {
+    padding: 10px 22px; border-radius: 999px; border: 2px solid var(--blue);
+    background: var(--white); color: var(--blue);
+    font-weight: 600; font-size: .85rem; cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .tab-btn.active { background: var(--blue); color: #fff; }
+
+  .accordion { border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
+  .acc-item { border-bottom: 1px solid var(--gray-200); }
+  .acc-item:last-child { border-bottom: none; }
+  .acc-header {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px; background: var(--white); border: none; cursor: pointer;
+    font-weight: 600; font-size: .92rem; text-align: left;
+    transition: background .2s; gap: 12px;
+  }
+  .acc-header:hover { background: var(--gray-50); }
+  .acc-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--blue-light); color: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: transform .3s, background .2s;
+  }
+  .acc-icon .material-icons-round { font-size: 18px; }
+  .acc-header.open .acc-icon { transform: rotate(45deg); background: var(--blue); color: #fff; }
+  .acc-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s ease, padding .3s;
+    background: var(--gray-50);
+  }
+  .acc-body.open { max-height: 800px; }
+  .acc-body-inner { padding: 16px 20px; }
+  .acc-body ul { padding-left: 20px; }
+  .acc-body li { font-size: .88rem; color: var(--gray-600); margin-bottom: 6px; }
+
+  /* ── 7. MEKANISME ── */
+  #mekanisme { background: var(--gray-50); }
+  .steps {
+    display: flex; flex-direction: column; gap: 0;
+    margin-top: 40px; position: relative;
+  }
+  .steps::before {
+    content: ''; position: absolute; left: 28px; top: 28px; bottom: 28px;
+    width: 2px; background: var(--blue-light);
+  }
+  .step {
+    display: flex; gap: 24px; align-items: flex-start;
+    padding-bottom: 32px; position: relative;
+  }
+  .step:last-child { padding-bottom: 0; }
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--blue); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 900; flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(26,86,219,.3); z-index: 1;
+  }
+  .step-content { padding-top: 12px; }
+  .step-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+  .step-desc { font-size: .85rem; color: var(--gray-600); }
+
+  /* ── 8. JADWAL ── */
+  #jadwal { background: var(--white); }
+  .jadwal-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px; margin-top: 40px;
+  }
+  .jadwal-card {
+    border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-sm);
+    transition: transform .25s, box-shadow .25s;
+    background: var(--white);
+  }
+  .jadwal-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .jadwal-head {
+    background: var(--blue); padding: 20px 22px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .jadwal-head-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(255,255,255,.18);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .jadwal-head-icon .material-icons-round { color: #fff; font-size: 20px; }
+  .jadwal-head-title { font-weight: 700; font-size: 1rem; color: #fff; line-height: 1.25; }
+  .jadwal-head-sub { font-size: .75rem; color: rgba(255,255,255,.72); margin-top: 3px; }
+  .jadwal-body { padding: 8px 0; }
+  .jadwal-row {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 22px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .jadwal-row:last-child { border-bottom: none; }
+  .jadwal-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--blue); flex-shrink: 0; margin-top: 5px;
+  }
+  .jadwal-kegiatan { font-weight: 600; font-size: .88rem; color: var(--gray-800); }
+  .jadwal-tanggal { font-size: .78rem; color: var(--gray-400); margin-top: 3px; }
+
+  /* ── 9. UNDUH ── */
+  #unduh { background: var(--gray-50); }
+  .unduh-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px; margin-top: 36px;
+  }
+  .unduh-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--radius); padding: 20px;
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none; color: var(--gray-800);
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+    box-shadow: var(--shadow-sm);
+  }
+  .unduh-card:hover {
+    border-color: var(--blue); box-shadow: var(--shadow-md);
+    transform: translateY(-3px); color: var(--blue);
+  }
+  .unduh-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--blue-light); display: flex; align-items: center;
+    justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+    transition: background .2s;
+  }
+  .unduh-card:hover .unduh-icon { background: var(--blue); }
+  .unduh-name { font-weight: 600; font-size: .85rem; }
+  .unduh-type { font-size: .72rem; color: var(--gray-400); }
+
+  /* ── 10. ZONA INTEGRITAS ── */
+  #zona-integritas { background: #fff1f1; }
+  .zi-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+  .zi-seal {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--red); display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 1.8rem; flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(220,38,38,.3);
+  }
+  .zi-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--red-dark); }
+  .zi-sub { font-size: .88rem; color: #7f1d1d; }
+  .zi-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .zi-card {
+    background: var(--white); border: 2px solid #fca5a5;
+    border-radius: var(--radius); padding: 24px 20px; text-align: center;
+  }
+  .zi-icon { font-size: 2.2rem; margin-bottom: 10px; }
+  .zi-card-title { font-weight: 700; font-size: 1rem; color: var(--red-dark); margin-bottom: 6px; }
+  .zi-card-desc { font-size: .8rem; color: #991b1b; }
+  .zi-banner {
+    margin-top: 24px; background: var(--red); color: #fff;
+    border-radius: var(--radius); padding: 18px 24px;
+    text-align: center; font-weight: 700; font-size: 1rem;
+    letter-spacing: .03em;
+  }
+
+  /* ── 11. PENGADUAN ── */
+  #pengaduan { background: var(--white); }
+  .pengaduan-box {
+    background: var(--blue); border-radius: var(--radius);
+    padding: 48px 40px; text-align: center; color: #fff;
+    max-width: 620px; margin: 32px auto 0;
+    box-shadow: 0 8px 32px rgba(26,86,219,.25);
+  }
+  .pengaduan-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; margin-bottom: 10px;
+  }
+  .pengaduan-box p { opacity: .85; margin-bottom: 28px; }
+  .hotline {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: rgba(255,255,255,.15); border-radius: 999px;
+    padding: 12px 28px; font-size: 1.4rem; font-weight: 800;
+    margin-bottom: 24px; letter-spacing: .04em;
+  }
+  .btn-form {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff; color: var(--blue);
+    padding: 12px 28px; border-radius: 999px;
+    font-weight: 700; font-size: .92rem; text-decoration: none;
+    transition: background .2s, transform .2s;
+  }
+  .btn-form:hover { background: var(--blue-light); transform: translateY(-2px); }
+
+  /* ── 12. QUOTES ── */
+  #quotes {
+    background: linear-gradient(135deg, var(--blue-dark) 0%, #0c2461 100%);
+    padding: 80px 24px; text-align: center;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
+    color: #fff; max-width: 780px; margin: 0 auto 20px;
+    line-height: 1.5;
+  }
+  .quote-text::before { content: '\201C'; color: #93c5fd; }
+  .quote-text::after  { content: '\201D'; color: #93c5fd; }
+  .quote-author {
+    font-size: .88rem; color: rgba(255,255,255,.6);
+    letter-spacing: .08em; text-transform: uppercase;
+  }
+
+  /* ── 13. FOOTER ── */
+  footer {
+    background: var(--gray-800); color: rgba(255,255,255,.75);
+    padding: 48px 24px 24px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 1fr;
+    gap: 40px; max-width: 1100px; margin: 0 auto;
+    text-align: center;
+  }
+  .footer-brand { display: flex; flex-direction: column; align-items: center; }
+  .footer-brand .logo-text { color: #fff; font-size: 1rem; }
+  .footer-brand .logo-sub { color: rgba(255,255,255,.5); }
+  .footer-about { font-size: .82rem; margin-top: 12px; line-height: 1.7; max-width: 540px; }
+  .footer-col h4 { color: #fff; font-size: .88rem; font-weight: 700; margin-bottom: 14px; }
+  .footer-col a {
+    display: block; color: rgba(255,255,255,.6); text-decoration: none;
+    font-size: .82rem; margin-bottom: 8px; transition: color .2s;
+  }
+  .footer-col a:hover { color: #93c5fd; }
+  .footer-bottom {
+    max-width: 1100px; margin: 32px auto 0;
+    padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px; font-size: .78rem;
+  }
+  .footer-bottom a { color: var(--blue-mid); text-decoration: none; }
+
+  /* ── TO TOP ── */
+  #toTop {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--blue); color: #fff; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(26,86,219,.4);
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s, transform .2s;
+    font-size: 1rem;
+  }
+  #toTop.show { opacity: 1; pointer-events: all; }
+  #toTop:hover { transform: translateY(-3px); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { display: none; }
+    .burger { display: flex; }
+    .sambutan-grid { grid-template-columns: 1fr; }
+    .kepsek-photo { max-width: 220px; margin: 0 auto 32px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .steps::before { left: 27px; }
+  }
+
+  @media (max-width: 640px) {
+    section { padding: 60px 20px; }
+    .banner-stats { gap: 20px; }
+    .jadwal-table { font-size: .78rem; }
+    .jadwal-table th, .jadwal-table td { padding: 10px 12px; }
+    .pengaduan-box { padding: 32px 20px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .zi-header { flex-direction: column; text-align: center; }
+  }
+
+  /* ── ANIMATIONS on scroll ── */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="mainHeader">
+  <div class="header-inner">
+    <a href="#beranda" class="logo">
+      <img src="img/logo.png" alt="SPMB SMAN 1 Lubai Ulu">
+    </a>
+    <nav>
+      <a href="#sambutan">Sambutan</a>
+      <a href="#fasilitas">Fasilitas</a>
+      <a href="#jalur">Jalur</a>
+      <a href="#syarat">Syarat</a>
+      <a href="#jadwal">Jadwal</a>
+      <a href="#pengaduan">Pengaduan</a>
+      <a href="https://main-snmb.wd1ea4.easypanel.host/login" target="_blank" class="nav-cta">Daftar Sekarang →</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#sambutan" onclick="closeMobile()">Sambutan</a>
+  <a href="#fasilitas" onclick="closeMobile()">Fasilitas</a>
+  <a href="#daya-tampung" onclick="closeMobile()">Daya Tampung</a>
+  <a href="#jalur" onclick="closeMobile()">Jalur Pendaftaran</a>
+  <a href="#syarat" onclick="closeMobile()">Syarat</a>
+  <a href="#mekanisme" onclick="closeMobile()">Mekanisme</a>
+  <a href="#jadwal" onclick="closeMobile()">Jadwal</a>
+  <a href="#unduh" onclick="closeMobile()">Unduh Dokumen</a>
+  <a href="#pengaduan" onclick="closeMobile()">Pengaduan</a>
+  <a href="https://main-snmb.wd1ea4.easypanel.host/login" target="_blank" style="background:var(--blue);color:#fff;border-radius:8px;display:flex;align-items:center;gap:6px;"><span class="material-icons-round" style="font-size:16px">edit</span> Daftar Sekarang</a>
+</div>
+
+<!-- 1. BANNER -->
+<section id="beranda">
+  <div class="banner-bg" style="background-image:url('img/banner3.jpeg')"></div>
+  <div class="banner-overlay"></div>
+  <div class="banner-content">
+    <div class="banner-badge">
+      <span class="badge-star"><span class="material-icons-round" style="font-size:14px;vertical-align:middle;color:var(--gold)">star</span></span> Akreditasi A &nbsp;|&nbsp; Terakreditasi Unggul
+    </div>
+    <h1>Penerimaan Murid Baru<br>SMAN 1 Lubai Ulu</h1>
+    <div class="sub">Sistem Penerimaan Murid Baru (SPMB)</div>
+    <div class="year">Tahun Ajaran 2026/2027</div>
+    <p class="banner-desc">Pendaftaran dilakukan secara objektif, transparan, akuntabel, berkeadilan, dan tanpa diskriminasi. Bergabunglah bersama kami dan wujudkan masa depan terbaik Anda.</p>
+    <a href="https://main-snmb.wd1ea4.easypanel.host/login" target="_blank" class="btn-primary">
+      Klik Disini untuk Mendaftar
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <div class="banner-stats">
+      <div class="banner-stat">
+        <div class="num">8</div>
+        <div class="lbl">Rombongan Belajar</div>
+      </div>
+      <div class="banner-stat">
+        <div class="num">288</div>
+        <div class="lbl">Kuota Calon Murid</div>
+      </div>
+      <div class="banner-stat">
+        <div class="num">4</div>
+        <div class="lbl">Jalur Pendaftaran</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scroll ke bawah
+  </div>
+</section>
+
+<!-- 2. SAMBUTAN -->
+<section id="sambutan">
+  <div class="container">
+    <div class="sambutan-grid reveal">
+      <div class="kepsek-photo">
+        <div class="photo-placeholder">
+          <img src="img/foto-kepsek.png" alt="Foto Kepala Sekolah SMAN 1 Lubai Ulu" class="img-kepsek">
+        </div>
+        <div class="kepsek-badge">Kepala Sekolah</div>
+      </div>
+      <div class="sambutan-text">
+        <div class="section-label">Sambutan</div>
+        <h2>Selamat Datang di SMAN 1 Lubai Ulu</h2>
+        <blockquote>
+          "Pendidikan adalah investasi terbaik untuk masa depan."
+        </blockquote>
+        <p>Selamat datang di halaman resmi Penerimaan Murid Baru (SPMB) SMAN 1 Lubai Ulu Tahun Ajaran 2026/2027. Kami dengan tangan terbuka menyambut putra-putri terbaik yang ingin bergabung dan meraih prestasi bersama kami.</p>
+        <p>Proses seleksi dilaksanakan sesuai Petunjuk Teknis SPMB Provinsi Sumatera Selatan berdasarkan Keputusan Gubernur Nomor 136/KPTS/DISDIK/2026, menjamin kesetaraan kesempatan bagi semua calon murid.</p>
+        <div class="kepsek-name">Salam, <br>Hj. Titin Evi Darlin, S.Pd., M.Si.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. FASILITAS -->
+<section id="fasilitas">
+  <div class="container">
+    <div class="section-label">Fasilitas</div>
+    <h2>Fasilitas Unggulan Sekolah</h2>
+    <p class="lead">Didukung sarana dan prasarana lengkap untuk menunjang proses pembelajaran yang optimal.</p>
+    <div class="fasilitas-grid reveal">
+      <div class="fasilitas-card">
+        <div class="fasilitas-img" style="background-image:url('img/labkom.jpeg')">
+          <div class="fasilitas-img-label">Laboratorium Komputer</div>
+        </div>
+        <div class="fasilitas-body"><p>Fasilitas komputer modern dengan koneksi internet untuk mendukung pembelajaran berbasis teknologi.</p></div>
+      </div>
+      <div class="fasilitas-card">
+        <div class="fasilitas-img" style="background-image:url('img/ipa.jpg')">
+          <div class="fasilitas-img-label">Laboratorium IPA</div>
+        </div>
+        <div class="fasilitas-body"><p>Lab lengkap untuk praktikum Fisika, Kimia, dan Biologi guna memperdalam pemahaman sains.</p></div>
+      </div>
+      <div class="fasilitas-card">
+        <div class="fasilitas-img" style="background-image:url('perpustakaan.jpg')">
+          <div class="fasilitas-img-label">Perpustakaan</div>
+        </div>
+        <div class="fasilitas-body"><p>Koleksi buku lengkap dan ruang baca nyaman untuk mendukung budaya literasi siswa.</p></div>
+      </div>
+      <div class="fasilitas-card">
+        <div class="fasilitas-img" style="background-image:url('img/lapangan.jpeg')">
+          <div class="fasilitas-img-label">Lapangan Olahraga</div>
+        </div>
+        <div class="fasilitas-body"><p>Area olahraga multi-fungsi untuk mengembangkan bakat dan kebugaran jasmani siswa.</p></div>
+      </div>
+      <div class="fasilitas-card">
+        <div class="fasilitas-img" style="background-image:url('img/musholla.png')">
+          <div class="fasilitas-img-label">Musholla</div>
+        </div>
+        <div class="fasilitas-body"><p>Tempat ibadah yang nyaman dan bersih untuk mendukung pembinaan karakter religius siswa.</p></div>
+      </div>
+      <div class="fasilitas-card">
+        <div class="fasilitas-img" style="background-image:url('img/ekskul.jpeg')">
+          <div class="fasilitas-img-label">Ekstrakurikuler Variatif</div>
+        </div>
+        <div class="fasilitas-body"><p>Tersedia berbagai pilihan Ekstrakurikuler untuk mengembangkan bakat dan minat murid.</p></div>
+      </div>
+      <div class="fasilitas-card">
+        <div class="fasilitas-img" style="background-image:url('cctv.jpg')">
+          <div class="fasilitas-img-label">CCTV 24 Jam</div>
+        </div>
+        <div class="fasilitas-body"><p>Deskripsi CCTV</p></div>
+      </div>
+      <div class="fasilitas-card">
+        <div class="fasilitas-img" style="background-image:url('img/cbt.jpg')">
+          <div class="fasilitas-img-label">Implementasi TIK dalam Asesmen</div>
+        </div>
+        <div class="fasilitas-body"><p>SMAN 1 Lubai Ulu melaksanan Asesmen pembelajaran menggunakan CBT.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. DAYA TAMPUNG -->
+<section id="daya-tampung">
+  <div class="container">
+    <div class="section-label" style="background:rgba(255,255,255,.2);color:#fff;">Daya Tampung</div>
+    <h2>Kuota Penerimaan 2026/2027</h2>
+    <p class="lead">Daya tampung resmi yang ditetapkan Dinas Pendidikan Provinsi Sumatera Selatan.</p>
+    <div class="dt-cards reveal">
+      <div class="dt-card">
+        <div class="dt-icon"><span class="material-icons-round" style="font-size:2rem;opacity:.85">school</span></div>
+        <div class="dt-num">8</div>
+        <div class="dt-lbl">Rombongan Belajar (Rombel)</div>
+      </div>
+      <div class="dt-card">
+        <div class="dt-icon"><span class="material-icons-round" style="font-size:2rem;opacity:.85">groups</span></div>
+        <div class="dt-num">288</div>
+        <div class="dt-lbl">Total Calon Murid Baru</div>
+      </div>
+      <div class="dt-card">
+        <div class="dt-icon"><span class="material-icons-round" style="font-size:2rem;opacity:.85">school</span></div>
+        <div class="dt-num">4</div>
+        <div class="dt-lbl">Jalur Pendaftaran</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. JALUR -->
+<section id="jalur">
+  <div class="container">
+    <div class="section-label">Jalur Pendaftaran</div>
+    <h2>Pilihan Jalur SPMB</h2>
+    <p class="lead">Tersedia empat jalur pendaftaran sesuai ketentuan Permendikdasmen No. 3 Tahun 2025.</p>
+    <div class="jalur-grid reveal">
+      <div class="jalur-card">
+        <div class="jalur-percent">30%</div>
+        <div class="jalur-name"><span class="material-icons-round" style="font-size:18px;vertical-align:middle;margin-right:4px;color:var(--blue)">home</span> Jalur Domisili</div>
+        <div class="jalur-desc">Diperuntukkan bagi calon murid yang berdomisili di Kecamatan Lubai Ulu, Kabupaten Muara Enim.</div>
+      </div>
+      <div class="jalur-card">
+        <div class="jalur-percent">30%</div>
+        <div class="jalur-name"><span class="material-icons-round" style="font-size:18px;vertical-align:middle;margin-right:4px;color:var(--blue)">diversity_3</span> Jalur Afirmasi</div>
+        <div class="jalur-desc">Diperuntukkan bagi calon murid yang berasal dari keluarga ekonomi tidak mampu dan penyandang disabilitas.</div>
+      </div>
+      <div class="jalur-card">
+        <div class="jalur-percent">35%</div>
+        <div class="jalur-name"><span class="material-icons-round" style="font-size:18px;vertical-align:middle;margin-right:4px;color:var(--blue)">emoji_events</span> Jalur Prestasi</div>
+        <div class="jalur-desc">Diperuntukkan bagi calon murid berprestasi dalam bidang akademik, non-akademik, nilai TKA, dan tes akademik.</div>
+      </div>
+      <div class="jalur-card">
+        <div class="jalur-percent">5%</div>
+        <div class="jalur-name"><span class="material-icons-round" style="font-size:18px;vertical-align:middle;margin-right:4px;color:var(--blue)">swap_horiz</span> Jalur Mutasi</div>
+        <div class="jalur-desc">Diperuntukkan bagi calon murid yang berpindah domisili karena perpindahan tugas orang tua/wali, dan anak guru.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. SYARAT -->
+<section id="syarat">
+  <div class="container">
+    <div class="section-label">Persyaratan</div>
+    <h2>Syarat Pendaftaran</h2>
+    <p class="lead">Klik masing-masing syarat untuk melihat detail persyaratan yang diperlukan.</p>
+
+    <div class="syarat-tabs">
+      <button class="tab-btn active" onclick="showTab('umum', this)">Syarat Umum</button>
+      <button class="tab-btn" onclick="showTab('domisili', this)">Jalur Domisili</button>
+      <button class="tab-btn" onclick="showTab('afirmasi', this)">Jalur Afirmasi</button>
+      <button class="tab-btn" onclick="showTab('prestasi', this)">Jalur Prestasi</button>
+      <button class="tab-btn" onclick="showTab('mutasi', this)">Jalur Mutasi</button>
+    </div>
+
+    <!-- UMUM -->
+    <div id="tab-umum" class="accordion">
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Persyaratan Usia
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Berusia paling tinggi 21 (dua puluh satu) tahun pada tanggal 1 Juli 2026</li>
+              <li>Persyaratan usia dibuktikan dengan akta kelahiran dan kartu keluarga yang dilegalisasi oleh lurah/kepala desa</li>
+              <li>Calon murid penyandang disabilitas dikecualikan dari ketentuan batas usia</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Persyaratan Ijazah / Kelulusan
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Telah menyelesaikan pendidikan SMP atau bentuk lain yang sederajat</li>
+              <li>Dibuktikan dengan ijazah SMP/MTs/sederajat, surat keterangan lulus atau surat keterangan aktif kelas IX.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Persyaratan Nilai Rapor
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Memiliki nilai rapor dari Kelas VI Semester 1 sampai Kelas IX Semester 1 dengan mata pelajaran Bahasa Indonesia, Bahasa Inggris, Matematika, IPA dan IPS.</li>
+              <li>Dibuktikan dengan SPTJM Nilai Rapor dan Rapor Asli</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Menandatangani Surat Keabsahan Dokumen
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Orang tua/wali murid wajib membuat surat pernyataan keabsahan dokumen</li>
+              <li>Menyatakan data yang disampaikan adalah benar dan sesuai dokumen resmi</li>
+              <li>Format surat pernyataan tersedia di sekolah atau dapat diunduh</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOMISILI -->
+    <div id="tab-domisili" class="accordion" style="display:none">
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Bukti Domisili
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Berdomisili di Kecamatan Lubai Ulu, Muara Enim dibuktikan dengan Kartu Keluarga (KK) orangtua yang diterbitkan paling singkat 1 tahun sebelum tanggal pendaftaran SPMB</li>
+              <li>Nama orang tua di KK harus sama dengan nama di rapor/ijazah jenjang sebelumnya</li>
+              <li>Bukti Domisili tidak dapat diganti dengan Surat Keterangan Domisili.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Ketentuan Khusus Domisili
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Jika terdapat perubahan data KK dalam kurun waktu kurang dari 1 tahun sebelum tanggal pendaftaran SPMB bukan karena perpindahan domisili wajib melampirkan KK lama.</li>
+              <li>Jika terbukti memalsukan dokumen kartu keluarga, calon murid dinyatakan gugur/didiskualifikasi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AFIRMASI -->
+    <div id="tab-afirmasi" class="accordion" style="display:none">
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Bukti Ekonomi Tidak Mampu
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Dibuktikan dengan Kartu Program Indonesia Pintar (PIP) yang masih aktif dan terdata di Dapodik</li>
+              <li>Dibuktikan dengan Kartu Peserta Program Keluarga Harapan (PKH) yang masih aktif dan terdata dalam DTKS Dinas Sosial</li>
+              <li>Catatan: Kartu KIS dan SKTM tidak dapat digunakan sebagai bukti</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Bukti Penyandang Disabilitas
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Surat rekomendasi dari dokter dan/atau dokter spesialis; atau</li>
+              <li>Kartu penyandang disabilitas yang dikeluarkan oleh kementerian yang menyelenggarakan urusan sosial</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRESTASI -->
+    <div id="tab-prestasi" class="accordion" style="display:none">
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Prestasi Akademik
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Diperuntukkan bagi calon murid yang memiliki prestasi akademik diantaranya Ranking/peringkat kelas atau juara umum 1–3 pada semester 1-5 yang dibuktikan dengan SPTJM Peringkat yang ditandatangani oleh Kepala Sekolah; dan atau</li>
+              <li>Diperuntukkan bagi calon murid yang pernah menjuarai atau pemenang lomba bidang akademik. Dibuktikan dengan SPTJM Prestasi dan sertifikat/piagam asli dan fotocopy yang dilegalisir.</li>
+              <li>lomba yang dimaksud adalah lomba bidang sains, teknologi, riset, inovasi (OSN, KSN, OLSN, OPSI, KSM, Robotika) diterbitkan max. 3 tahun terakhir dan telah terkurasi pada SIMT Kemdikdasmen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Prestasi Non-Akademik
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Diperuntukkan bagi calon murid yang memiliki pengalaman sebagai ketua OSIS atau Pramuka yang dibuktikan dengan SPTJM Pengalaman Organisasi dan lampiran yang dipersyaratkan. dan atau;</li>
+              <li>Diperuntukkan bagi calon murid yang pernah menjuarai atau pemenang lomba bidang non-akademik. Dibuktikan dengan SPTJM Prestasi dan sertifikat/piagam asli dan fotocopy yang dilegalisir.</li>
+              <li>Prestasi yang dimaksud adalah prestasi bidang seni budaya (FLS2N), olahraga (GSI, O2SN, PON, POPNAS, POPDA), keagamaan (MTQ) dan Ajang Student Fest SMAN 1 Lubai Ulu</li>
+              <li>Sertifikat/piagam diterbitkan paling lama 3 tahun sebelum pendaftaran dan telah terkurasi pada SIMT Kemendikdasmen.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Prestasi Nilai TKA
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Diperuntukkan bagi calon murid yang memiliki nilai TKA yang dibukatikan dengan SPTJM TKA dan Sertifikat TKA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Prestasi melalui Tes Akademik
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Diperuntukkan bagi calon murid yang mendaftar seleksi penerimaan murid baru selain jalur domisili, afirmasi, prestasi (akademik, non-akademik, dan TKA)</li>
+              <li>Mata Ujian terdiri dari pelajaran Bahasa Indonesia, Bahasa Inggris, Matematika, IPA, dan IPS</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MUTASI -->
+    <div id="tab-mutasi" class="accordion" style="display:none">
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Syarat Mutasi Orang Tua Pindah Tugas
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Surat penugasan dari instansi/lembaga pemerintah, TNI/POLRI, atau BUMN/BUMD yang mempekerjakan orang tua/wali, diterbitkan paling lama 1 tahun sebelum pendaftaran</li>
+              <li>Surat keputusan penugasan diterbitkan oleh pimpinan/kepala instansi</li>
+              <li>Berlaku untuk perpindahan antar Kabupaten/Kota di Sumsel atau antar Provinsi ke Sumsel</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Syarat Anak Guru
+          <div class="acc-icon"><span class="material-icons-round">add</span></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <ul>
+              <li>Surat penugasan orang tua/wali sebagai guru di SMAN 1 Lubai Ulu</li>
+              <li>Kartu Keluarga (KK) yang mencantumkan calon murid sebagai anak</li>
+              <li>Mendaftar pada satuan pendidikan tempat orang tua/wali mengajar</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. MEKANISME -->
+<section id="mekanisme">
+  <div class="container">
+    <div class="section-label">Alur Pendaftaran</div>
+    <h2>Mekanisme Pendaftaran</h2>
+    <p class="lead">Berikut adalah alur atau langkah-langkah pendaftaran SPMB SMAN 1 Lubai Ulu 2026/2027.</p>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Daftar Online</div>
+          <div class="step-desc">Calon murid membaca informasi terkait SPMB secara lengkap, kemudian lakukan pendaftaran secara online melalui <strong>https://spmb.sman1lubaiulu.sch.id</strong> dan mengunggah dokumen yang dibutuhkan sesuai jalur yang dipilih.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Mencetak Bukti Pendaftaran &amp; Verifikasi Berkas</div>
+          <div class="step-desc">Calon murid mencetak bukti pendaftaran, lalu datang ke SMAN 1 Lubai Ulu membawa berkas asli dan fotokopi untuk verifikasi pendaftaran oleh panitia SPMB pada waktu yang telah ditetapkan.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Melaksanakan Tes Akademik menggunakan CAT</div>
+          <div class="step-desc">Khusus pendaftar Jalur Prestasi melalui Tes Akademik, wajib mengikuti tes yang dilaksanakan dengan metode Computer Assisted Test (CAT) sesuai jadwal yang ditetapkan.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Melihat Hasil Seleksi</div>
+          <div class="step-desc">Pantau pengumuman hasil seleksi melalui akun masing-masing di sistem SPMB online dan cetak surat kelulusan jika dinyatakan diterima.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Daftar Ulang</div>
+          <div class="step-desc">Calon murid yang dinyatakan lulus wajib melakukan daftar ulang ke SMAN 1 Lubai Ulu dan menyerahkan dokumen yang disyaratkan ke Panitia SPMB sesuai jadwal daftar ulang.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. JADWAL -->
+<section id="jadwal">
+  <div class="container">
+    <div class="section-label">Jadwal</div>
+    <h2>Jadwal Pelaksanaan SPMB</h2>
+    <p class="lead">Catat tanggal-tanggal penting berikut agar tidak melewatkan tahapan pendaftaran.</p>
+    <div class="jadwal-grid reveal">
+
+      <div class="jadwal-card">
+        <div class="jadwal-head">
+          <div class="jadwal-head-icon">
+            <span class="material-icons-round">campaign</span>
+          </div>
+          <div>
+            <div class="jadwal-head-title">Sosialisasi &amp; Publikasi</div>
+            <div class="jadwal-head-sub">Tahap Pertama</div>
+          </div>
+        </div>
+        <div class="jadwal-body">
+          <div class="jadwal-row">
+            <div class="jadwal-dot"></div>
+            <div>
+              <div class="jadwal-kegiatan">Sosialisasi &amp; Publikasi SPMB</div>
+              <div class="jadwal-tanggal">9 Maret – 15 Mei 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jadwal-card">
+        <div class="jadwal-head">
+          <div class="jadwal-head-icon">
+            <span class="material-icons-round">edit_note</span>
+          </div>
+          <div>
+            <div class="jadwal-head-title">Jalur Reguler</div>
+            <div class="jadwal-head-sub">Domisili, Afirmasi, Mutasi, Prestasi</div>
+          </div>
+        </div>
+        <div class="jadwal-body">
+          <div class="jadwal-row">
+            <div class="jadwal-dot"></div>
+            <div>
+              <div class="jadwal-kegiatan">Pendaftaran Online</div>
+              <div class="jadwal-tanggal">25, 26, 29, 30 Mei  -  2, 3 Juni 2026</div>
+            </div>
+          </div>
+          <div class="jadwal-row">
+            <div class="jadwal-dot"></div>
+            <div>
+              <div class="jadwal-kegiatan">Verifikasi Berkas</div>
+              <div class="jadwal-tanggal">25, 26, 29, 30 Mei  -  2, 3, 4 Juni 2026</div>
+            </div>
+          </div>
+          <div class="jadwal-row">
+            <div class="jadwal-dot"></div>
+            <div>
+              <div class="jadwal-kegiatan">Pengumuman Hasil Seleksi</div>
+              <div class="jadwal-tanggal">6 Juni 2026</div>
+            </div>
+          </div>
+          <div class="jadwal-row">
+            <div class="jadwal-dot"></div>
+            <div>
+              <div class="jadwal-kegiatan">Daftar Ulang</div>
+              <div class="jadwal-tanggal">8 – 12 Juni 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jadwal-card">
+        <div class="jadwal-head">
+          <div class="jadwal-head-icon">
+            <span class="material-icons-round">menu_book</span>
+          </div>
+          <div>
+            <div class="jadwal-head-title">Jalur Tes Akademik</div>
+            <div class="jadwal-head-sub">Prestasi melalui Tes Akademik</div>
+          </div>
+        </div>
+        <div class="jadwal-body">
+          <div class="jadwal-row">
+            <div class="jadwal-dot"></div>
+            <div>
+              <div class="jadwal-kegiatan">Pendaftaran</div>
+              <div class="jadwal-tanggal">15 – 18 Juni 2026</div>
+            </div>
+          </div>
+          <div class="jadwal-row">
+            <div class="jadwal-dot"></div>
+            <div>
+              <div class="jadwal-kegiatan">Verifikasi Berkas</div>
+              <div class="jadwal-tanggal">15 – 19 Juni 2026</div>
+            </div>
+          </div>
+          <div class="jadwal-row">
+            <div class="jadwal-dot"></div>
+            <div>
+              <div class="jadwal-kegiatan">Tes Akademik (CAT)</div>
+              <div class="jadwal-tanggal">22 – 23 Juni 2026</div>
+            </div>
+          </div>
+          <div class="jadwal-row">
+            <div class="jadwal-dot"></div>
+            <div>
+              <div class="jadwal-kegiatan">Pengumuman &amp; Daftar Ulang</div>
+              <div class="jadwal-tanggal">25 Juni / 26–30 Juni 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 9. UNDUH -->
+<section id="unduh">
+  <div class="container">
+    <div class="section-label">Dokumen</div>
+    <h2>Unduh Dokumen Pendukung</h2>
+    <p class="lead">Unduh formulir dan dokumen pendukung yang diperlukan dalam proses pendaftaran.</p>
+    <div class="unduh-grid reveal">
+      <a href="document/keabsahan.docx" download class="unduh-card">
+        <div class="unduh-icon"><span class="material-icons-round" style="font-size:1.3rem;color:var(--blue)">description</span></div>
+        <div>
+          <div class="unduh-name">Surat Keabsahan Dokumen</div>
+          <div class="unduh-type">DOCX / PDF &nbsp;·&nbsp; <span style="color:var(--blue);font-weight:600">Unduh</span></div>
+        </div>
+      </a>
+      <a href="document/sptjm.docx" download class="unduh-card">
+        <div class="unduh-icon"><span class="material-icons-round" style="font-size:1.3rem;color:var(--blue)">article</span></div>
+        <div>
+          <div class="unduh-name">Dokumen SPTJM</div>
+          <div class="unduh-type">PDF &nbsp;·&nbsp; <span style="color:var(--blue);font-weight:600">Unduh</span></div>
+        </div>
+      </a>
+      <a href="dokumen/sk-daya-tampung-spmb.pdf" download class="unduh-card">
+        <div class="unduh-icon"><span class="material-icons-round" style="font-size:1.3rem;color:var(--blue)">menu_book</span></div>
+        <div>
+          <div class="unduh-name">SK Daya Tampung dan Penetapan Wilayah SPMB</div>
+          <div class="unduh-type">PDF &nbsp;·&nbsp; <span style="color:var(--blue);font-weight:600">Unduh</span></div>
+        </div>
+      </a>
+      <a href="dokumen/checklist-berkas-verifikasi.pdf" download class="unduh-card">
+        <div class="unduh-icon"><span class="material-icons-round" style="font-size:1.3rem;color:var(--blue)">checklist</span></div>
+        <div>
+          <div class="unduh-name">Checklist Berkas Verifikasi Pendaftaran</div>
+          <div class="unduh-type">PDF &nbsp;·&nbsp; <span style="color:var(--blue);font-weight:600">Unduh</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 10. ZONA INTEGRITAS -->
+<section id="zona-integritas">
+  <div class="container">
+    <div class="zi-header reveal">
+      <div class="zi-seal"><span class="material-icons-round" style="font-size:2rem;color:#fff">verified_user</span></div>
+      <div>
+        <div class="zi-title">Zona Integritas</div>
+        <div class="zi-sub">SMAN 1 Lubai Ulu berkomitmen menyelenggarakan SPMB yang bersih, jujur, dan bebas dari segala bentuk pungutan liar</div>
+      </div>
+    </div>
+    <div class="zi-cards reveal">
+      <div class="zi-card">
+        <div class="zi-icon"><span class="material-icons-round" style="font-size:2.2rem;color:var(--red)">money_off</span></div>
+        <div class="zi-card-title">GRATIS</div>
+        <div class="zi-card-desc">Seluruh proses SPMB tidak dipungut biaya apapun. Pendaftaran, verifikasi, dan pengumuman sepenuhnya gratis.</div>
+      </div>
+      <div class="zi-card">
+        <div class="zi-icon"><span class="material-icons-round" style="font-size:2.2rem;color:var(--red)">block</span></div>
+        <div class="zi-card-title">BEBAS SUAP</div>
+        <div class="zi-card-desc">Tidak ada praktik suap atau gratifikasi dalam bentuk apapun. Seleksi murni berdasarkan ketentuan yang berlaku.</div>
+      </div>
+      <div class="zi-card">
+        <div class="zi-icon"><span class="material-icons-round" style="font-size:2.2rem;color:var(--red)">manage_accounts</span></div>
+        <div class="zi-card-title">BEBAS JASTIP</div>
+        <div class="zi-card-desc">Tidak ada layanan jasa titip atau perantara dalam proses pendaftaran. Daftar langsung melalui sistem resmi.</div>
+      </div>
+      <div class="zi-card">
+        <div class="zi-icon"><span class="material-icons-round" style="font-size:2.2rem;color:var(--red)">balance</span></div>
+        <div class="zi-card-title">BERKEADILAN</div>
+        <div class="zi-card-desc">Proses seleksi dilakukan secara objektif, transparan, akuntabel, dan tanpa diskriminasi suku, agama, atau golongan.</div>
+      </div>
+    </div>
+    <div class="zi-banner reveal">
+      <span class="material-icons-round" style="vertical-align:middle;margin-right:8px;font-size:1.2rem">warning</span>
+      LAPORKAN jika menemukan indikasi pungutan liar, suap, atau kecurangan dalam proses SPMB!
+    </div>
+  </div>
+</section>
+
+<!-- 11. PENGADUAN -->
+<section id="pengaduan">
+  <div class="container">
+    <div class="section-label">Pengaduan</div>
+    <h2 style="text-align:center">Layanan Pengaduan SPMB</h2>
+    <div class="pengaduan-box reveal">
+      <h3>Butuh Bantuan atau Ada Pengaduan?</h3>
+      <p>Sampaikan pertanyaan, laporan, atau pengaduan terkait proses SPMB melalui hotline atau formulir pengaduan resmi.</p>
+      <div class="hotline">
+        <span class="material-icons-round" style="font-size:1.6rem">phone_in_talk</span> 0811-2222-3333
+      </div>
+      <a href="https://www.lapor.go.id" target="_blank" class="btn-form">
+        <span class="material-icons-round" style="font-size:1rem">assignment</span> Isi Formulir Pengaduan Online
+      </a>
+      <p style="font-size:.78rem;margin-top:16px;opacity:.7;">
+        Instagram: @smansalubaiulu
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 12. QUOTES -->
+<section id="quotes">
+  <div class="container">
+    <p class="quote-text">
+      Pendidikan adalah senjata paling ampuh yang bisa kamu gunakan untuk mengubah dunia.
+    </p>
+    <div class="quote-author">— Nelson Mandela</div>
+  </div>
+</section>
+
+<!-- 13. FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="kaki">
+        <img src="logo2.png" alt="SPMB SMAN 1 Lubai Ulu">
+      </div>
+      <p class="footer-about"><strong>Sekretariat:</strong><br>Jl. Raya Prabumulih - Baturaja KM.45, Ds. Karang Agung, Kecamatan Lubai Ulu, Kabupaten Muara Enim, Sumatera Selatan<br><strong>Surel:</strong>admin@sman1lubaiulu.sch.id</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 SMAN 1 Lubai Ulu — SPMB Tahun Ajaran 2026/2027</span>
+  </div>
+</footer>
+
+<!-- TO TOP BUTTON -->
+<button id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Ke atas">
+  <span class="material-icons-round" style="font-size:1.2rem">arrow_upward</span>
+</button>
+
+<script>
+  // Header scroll
+  const header = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+    document.getElementById('toTop').classList.toggle('show', window.scrollY > 400);
+  });
+
+  // Burger menu
+  const burger = document.getElementById('burger');
+  const mobileNav = document.getElementById('mobileNav');
+  burger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+  });
+  function closeMobile() { mobileNav.classList.remove('open'); }
+
+  // Accordion
+  function toggleAcc(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    // close all in same accordion
+    btn.closest('.accordion').querySelectorAll('.acc-header').forEach(h => {
+      h.classList.remove('open');
+      h.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) {
+      btn.classList.add('open');
+      body.classList.add('open');
+    }
+  }
+
+  // Tabs
+  function showTab(tab, btn) {
+    document.querySelectorAll('[id^="tab-"]').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).style.display = 'block';
+    btn.classList.add('active');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

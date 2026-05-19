@@ -675,7 +675,7 @@
       <a href="#syarat">Syarat</a>
       <a href="#jadwal">Jadwal</a>
       <a href="#pengaduan">Pengaduan</a>
-      <a href="404.html" target="_blank" class="nav-cta">Login →</a>
+      <a href="#" class="nav-cta blocked-access">Login →</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -694,7 +694,7 @@
   <a href="#jadwal" onclick="closeMobile()">Jadwal</a>
   <a href="#unduh" onclick="closeMobile()">Unduh Dokumen</a>
   <a href="#pengaduan" onclick="closeMobile()">Pengaduan</a>
-  <a href="404.html" target="_blank" style="background:var(--blue);color:#fff;border-radius:8px;display:flex;align-items:center;gap:6px;"><span class="material-icons-round" style="font-size:16px">edit</span> Login</a>
+  <a href="#" class="nav-cta blocked-access"> Login</a>
 </div>
 
 <!-- 1. BANNER -->
@@ -708,7 +708,7 @@
     <h1>Sistem Penerimaan Murid Baru (SPMB)<br>SMAN 1 Lubai Ulu</h1>
     <div class="year">Tahun Ajaran 2026/2027</div>
     <p class="banner-desc">Pendaftaran dibuka pada 25 Mei 2026</p>
-    <a href="404.html" target="_blank" class="btn-primary">
+    <a href="#" class="btn-primary blocked-access">
       Klik Disini untuk Mendaftar
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -1487,6 +1487,135 @@
     openVideoModal();
   });
 </script>
+<style>
+#blockedModal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(6px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999999;
+  padding:20px;
+}
 
+#blockedModal.show{
+  display:flex;
+}
+
+.blocked-box{
+  width:100%;
+  max-width:430px;
+  background:#fff;
+  border-radius:24px;
+  padding:34px 28px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  animation:popup .25s ease;
+}
+
+@keyframes popup{
+  from{
+    opacity:0;
+    transform:translateY(12px) scale(.96);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.blocked-code{
+  font-size:48px;
+  font-weight:800;
+  color:#2563eb;
+  line-height:1;
+}
+
+.blocked-title{
+  margin-top:10px;
+  font-size:24px;
+  font-weight:700;
+  color:#111827;
+}
+
+.blocked-school{
+  margin-top:20px;
+  line-height:1.7;
+  color:#374151;
+  font-size:15px;
+}
+
+.blocked-time{
+  margin-top:18px;
+  background:#eff6ff;
+  color:#1d4ed8;
+  padding:14px;
+  border-radius:14px;
+  font-weight:700;
+  line-height:1.7;
+}
+
+.blocked-footer{
+  margin-top:22px;
+  font-size:12px;
+  color:#9ca3af;
+}
+</style>
+
+<div id="blockedModal">
+  <div class="blocked-box">
+
+    <div class="blocked-code">404</div>
+
+    <div class="blocked-title">
+      Akses Terbatas
+    </div>
+
+    <div class="blocked-school">
+      <strong>Sistem Penerimaan Murid Baru (SPMB)</strong><br>
+      SMAN 1 LUBAI ULU<br><br>
+
+      saat ini Dalam Proses Peningkatan Sistem.
+    </div>
+
+    <div class="blocked-time">
+      Pendaftaran hanya dapat diakses pukul:<br>
+      06.00 sampai dengan 21.00 WIB
+    </div>
+
+    <div class="blocked-footer">
+      © 2026 SMAN 1 LUBAI ULU.<br>
+      Seluruh Hak Cipta Dilindungi.
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.blocked-access')
+.forEach(el => {
+
+  el.addEventListener('click', function(e){
+    e.preventDefault()
+
+    document
+      .getElementById('blockedModal')
+      .classList.add('show')
+  })
+
+})
+
+document
+.getElementById('blockedModal')
+.addEventListener('click', function(e){
+
+  if(e.target.id === 'blockedModal'){
+    this.classList.remove('show')
+  }
+
+})
+</script>
 </body>
 </html>
